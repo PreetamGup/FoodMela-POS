@@ -26,12 +26,6 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:false}))
 app.use(morgan('dev'));
 
-//Static files
-app.use(express.static(path.join(__dirname , "./client/build")))
-
-app.get("*", function(req, res){
-    res.sendFile(path.join(__dirname, "./client/build/index.html"))
-})
 
 
 
@@ -40,6 +34,14 @@ app.get("*", function(req, res){
 app.use('/api/items', require('./routes/itemRoutes') )
 app.use('/api/users', require('./routes/userRoutes') )
 app.use('/api/bills', require('./routes/billsRoutes') )
+
+//Static files
+app.use(express.static(path.join(__dirname , "./client/build")))
+
+app.get("*", function(req, res){
+    res.sendFile(path.join(__dirname, "./client/build/index.html"))
+})
+
 
 //port
 
